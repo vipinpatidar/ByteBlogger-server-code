@@ -44,6 +44,9 @@ export const postSignupUser = async (req, res, next) => {
     const frontData = {
       ...UserOtherInfo,
       userId: user._id,
+      isAdmin: user?.isAdmin,
+      isEditor: user?.isEditor,
+      token,
     };
 
     res.cookie("accessToken", token, { httpOnly: true });
@@ -88,6 +91,7 @@ export const postLoginUser = async (req, res, next) => {
       userId: user._id,
       isAdmin: user.isAdmin,
       isEditor: user.isEditor,
+      token,
     };
 
     res.cookie("accessToken", token, { httpOnly: true });

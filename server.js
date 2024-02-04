@@ -31,7 +31,7 @@ export const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.use(
   cors({
-    origin: "https://byteblogger-vipin.netlify.app",
+    origin: ["https://byteblogger-vipin.netlify.app", "http://localhost:5173"],
     credentials: true,
   })
 );

@@ -56,6 +56,7 @@ export const postGoogleAuth = async (req, res, next) => {
       userId: user._id,
       isEditor: user.isEditor,
       isAdmin: user.isAdmin,
+      token,
     };
 
     res.cookie("accessToken", token, { httpOnly: true });

@@ -3,7 +3,6 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
-import multer from "multer";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -31,63 +30,15 @@ export const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.use(
   cors({
-    origin: [
-      "https://byteblogger-vipin.netlify.app",
-      "http://localhost:5173",
-      "https://byteblogger-website-client.onrender.com",
-    ],
+    origin: ["https://byteblogger-vipin.netlify.app", "http://localhost:5173"],
     credentials: true,
   })
 );
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use("/uploads", express.static("uploads"));
+// app.use("/uploads", express.static("uploads"));
 
 app.use(cookieParser());
-
-/*============ Multer configuration ================= */
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "./uploads");
-  },
-  filename: function (req, file, cb) {
-    const suffix = Date.now();
-    cb(null, suffix + "-" + file.originalname);
-  },
-});
-
-const fileFilter = (req, file, callback) => {
-  if (
-    file.mimetype === "image/png" ||
-    file.mimetype === "image/jpeg" ||
-    file.mimetype === "image/jpg"
-  ) {
-    callback(null, true);
-  } else {
-    callback(null, false);
-  }
-};
-
-//MULTER
-const upload = multer({
-  storage: storage,
-  fileFilter: fileFilter,
-  limits: {
-    fileSize: 1024 * 1024 * 6, // 6Mb
-  },
-});
-
-app.post("/api/upload", upload.single("image"), (req, res, next) => {
-  try {
-    const file = req.file;
-    // console.log(file);
-    res.status(200).json(file.filename);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-/*============ Multer END ================= */
 
 //ROUTES SETUP
 app.use("/api/auth", authRoutes);

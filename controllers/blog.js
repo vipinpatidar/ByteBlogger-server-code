@@ -215,7 +215,7 @@ export const postCreateBlog = async (req, res, next) => {
         });
       }
 
-      if (!banner.length) {
+      if (!banner?.length) {
         return res.status(422).json({
           error:
             "You must provide a banner image before saving this blog as draft",

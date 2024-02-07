@@ -2,6 +2,10 @@
 
 This blog API follows the MVC (Model-View-Controller) architecture, uses npm as the package manager, and MongoDB as the database.
 
+# Live Preview
+
+ByteBlogger: https://byteblogger-vipin.netlify.app
+
 - controllers: Contains the logic for handling requests and responses.
 - models: Defines the data models used by the server.
 - uploads: for uploaded files

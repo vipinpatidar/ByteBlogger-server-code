@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
+import "dotenv/config";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import { dirname } from "path";
@@ -23,7 +23,6 @@ firebaseAdmin.initializeApp({
   credential: firebaseAdmin.credential.cert(serviceAccountKey),
 });
 
-dotenv.config();
 const app = express();
 const port = process.env.PORT || 8080;
 export const __dirname = dirname(fileURLToPath(import.meta.url));

@@ -363,9 +363,10 @@ export const putLikeAndDislike = async (req, res) => {
 
       await like.save();
 
-      user.likedBlogs.push(blog._id);
-      await user.save();
-
+      await User.updateOne(
+        { _id: userId },
+        { $addToSet: { likedBlogs: blogId } } // $addToSet prevents duplicates
+      );
       return res.status(200).json("liked blog");
     } else if (isLikedByUser) {
       await Notification.findOneAndDelete({
@@ -374,12 +375,7 @@ export const putLikeAndDislike = async (req, res) => {
         type: "like",
       });
 
-      const likedBlogs = user.likedBlogs.filter(
-        (blogId) => blogId !== blogId._id
-      );
-      user.likedBlogs = likedBlogs;
-
-      await user.save();
+      await User.updateOne({ _id: userId }, { $pull: { likedBlogs: blogId } });
 
       return res.status(200).json("disliked blog");
     }
@@ -416,19 +412,14 @@ export const deleteBlog = async (req, res, next) => {
 
     const blog = await Blog.findOneAndDelete({ _id: blogId });
     // console.log(blog);
-
-    let filePath = `${__dirname}${blog.banner}`;
-
-    fs.unlink(filePath, (err) => {
-      if (err) {
-        console.error(`Error deleting file ${filePath}: ${err.message}`);
-      } else {
-        console.log(`Deleted file: ${filePath}`);
-      }
-    });
+    // Cast to [ObjectId] failed for value "[ { '$pull': [ '670166cf471527dc708b36d2' ] } ]" (type string) at path "likedBlogs.0" because of "CastError"
 
     await Notification.deleteMany({ blog: blogId });
     await Comment.deleteMany({ blog_id: blogId });
+    await User.updateMany(
+      { likedBlogs: blogId }, // Find all users who liked this blog
+      { $pull: { likedBlogs: blogId } } // Remove the blogId from their likedBlogs array
+    );
 
     if (isAdmin) {
       let toEditor = new Notification({

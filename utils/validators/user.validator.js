@@ -32,7 +32,11 @@ export const checkUserInfoData = [
         // Check hostname
         let hostname = new URL(val).hostname;
 
-        if (!hostname?.includes(`${key}.com`) && key !== `website`) {
+        if (
+          (!hostname?.includes(`${key}.com`) ||
+            !hostname?.includes(`${key}.app`)) &&
+          key !== `website`
+        ) {
           throw new Error(
             `${key} link is not a valid link please check again or maybe add .com to link `
           );

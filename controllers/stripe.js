@@ -1,14 +1,23 @@
 import Stripe from "stripe";
 
-const stripe = Stripe(
-  "sk_test_51NxkghSFVsf2tYsVsfSy8UdQ3bzbUICvDN2ib0qIfUIcHLmjtQaFT6LFIX8fWySG87HMvtuSJVELWi5vPtJH9Txz00j7GacYBN"
-);
+const stripe = Stripe(process.env.STRIPE_KEY);
 
 export const postStipeCharges = async (req, res) => {
   try {
     const stripeResponse = await stripe.paymentIntents.create({
       amount: req.body.amount,
       currency: "inr",
+      description: "test payment of blogging app",
+      shipping: {
+        name: "Vipin Patidar",
+        address: {
+          line1: "Patidar mahoola",
+          postal_code: "98140",
+          city: "Jaipur",
+          state: "Rajasthan",
+          country: "India",
+        },
+      },
       automatic_payment_methods: { enabled: true },
     });
 

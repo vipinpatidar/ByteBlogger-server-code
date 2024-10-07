@@ -14,6 +14,7 @@ import { usersRoutes } from "./routes/user.js";
 import { commentRoutes } from "./routes/comment.js";
 import { notificationRoutes } from "./routes/notification.js";
 import { stripeRoutes } from "./routes/stripe.js";
+import { errorHandler, notFoundHandler } from "./middlewares/errorHandler.js";
 
 //Fire Base logics
 import firebaseAdmin from "firebase-admin";
@@ -47,6 +48,9 @@ app.use("/api/users", usersRoutes);
 app.use("/api/comment", commentRoutes);
 app.use("/api/notification", notificationRoutes);
 app.use("/api/payment", stripeRoutes);
+
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 mongoose
   .connect(process.env.MONGODB_URL, {

@@ -9,8 +9,8 @@ export const checkBlog = [
   check("des")
     .notEmpty()
     .withMessage("Please write a short description about your blog.")
-    .isLength({ max: 200 })
-    .withMessage("Please write description under 200 characters."),
+    .isLength({ max: 300 })
+    .withMessage("Please write description under 300 characters."),
 
   check("banner")
     .notEmpty()

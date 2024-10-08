@@ -4,7 +4,6 @@ import Notification from "../models/Notification.js";
 import Comment from "../models/Comment.js";
 import { validationResult } from "express-validator";
 import { __dirname } from "../server.js";
-import fs from "fs";
 
 /*======================= GET BLOGS WITH CATEGORY ======================== */
 

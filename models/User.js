@@ -77,6 +77,11 @@ const userSchema = mongoose.Schema(
       ref: "Blog",
       default: [],
     },
+    readLaterBlogs: {
+      type: [Schema.Types.ObjectId],
+      ref: "Blog",
+      default: [],
+    },
     isAdmin: {
       type: Boolean,
       default: false,

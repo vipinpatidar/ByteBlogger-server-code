@@ -19,7 +19,7 @@ const blogSchema = mongoose.Schema(
     },
     des: {
       type: String,
-      maxlength: 200,
+      maxlength: 300,
       // required: true
     },
     content: {

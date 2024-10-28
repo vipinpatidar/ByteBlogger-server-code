@@ -9,11 +9,10 @@ ByteBlogger: https://byteblogger-vipin.netlify.app
 ## Get Frontend Code
 
 <div>
-<a href="https://github.com/vipinpatidar/ByteBlogger-server-code" target="_blank">
-For using frontend (Clone or download)
+<a href="https://github.com/vipinpatidar/ByteBlogger-client-side" target="_blank">
+For using frontend side code (Clone or download)
 </a>
 </div>
-<br />
 
 ## what is there
 
@@ -32,13 +31,6 @@ For using frontend (Clone or download)
 - SECRET_KEY=your-secret-key
 - STRIPE_KEY=your stripe public key
 
-### Details for .env variable
-
-- PORT: Port on which the server will run.
-- MONGODB_URL: MongoDB connection URL.
-- SECRET_KEY: Secret key for JWT (JSON Web Token) authentication.
-- STRIPE_KEY=your stripe public key
-
 ## Installation
 
 ### Using Docker
@@ -51,7 +43,6 @@ For using frontend image in docker-compose.yaml file, Go to frontend github repo
 </a>
 </div>
 
-<br />
 <br />
 
 #### add a .env file in server directory with environment variables like

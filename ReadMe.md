@@ -6,6 +6,17 @@ This blog API follows the MVC (Model-View-Controller) architecture, uses npm as 
 
 ByteBlogger: https://byteblogger-vipin.netlify.app
 
+## Get Frontend Code
+
+<div>
+<a href="https://github.com/vipinpatidar/ByteBlogger-server-code" target="_blank">
+For using frontend (Clone or download)
+</a>
+</div>
+<br />
+
+## what is there
+
 - controllers: Contains the logic for handling requests and responses.
 - models: Defines the data models used by the server.
 - uploads: for uploaded files
@@ -35,7 +46,7 @@ ByteBlogger: https://byteblogger-vipin.netlify.app
 ### Adding frontend image to backend compose file
 
 <div align="center">
-<a href="https://github.com/vipinpatidar/ByteBlogger-server-code" target="_blank">
+<a href="https://github.com/vipinpatidar/ByteBlogger-client-side" target="_blank">
 For using frontend image in docker-compose.yaml file, Go to frontend github repo download or clone it and create a image using it's Dockerfile and docker-compose.yaml files
 </a>
 </div>

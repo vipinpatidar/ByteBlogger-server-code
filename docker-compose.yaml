@@ -8,7 +8,7 @@ services:
   web:
     depends_on:
       - server
-    image: frontend-frontend:latest
+    image: frontend-web:latest
     # specify the ports to expose for the web service
     # the first number is the port on the host machine
     # the second number is the port inside the container

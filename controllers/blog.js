@@ -110,6 +110,7 @@ export const getAllDashboardBlogs = async (req, res, next) => {
 /*======================= GET TRENDING BLOGS ======================== */
 
 export const getTrendingBlogs = async (req, res, next) => {
+  console.log(req.headers.origin)
   try {
     let maxBlog = 10;
 
